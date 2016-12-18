@@ -1,0 +1,44 @@
+endpointConfig:
+  hostname: localhost
+  port: 30000
+
+logging:
+  level: INFO
+  loggers:
+    "com.app.test.resource.DefaultResource": INFO
+
+restDatabase:
+  driverClass: com.mysql.jdbc.Driver
+  user: root
+  password:
+  url: jdbc:mysql://localhost/test_rest
+  properties:
+      charSet: UTF-8
+      hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+      hibernate.generate_statistics: false
+      hibernate.current_session_context_class: thread
+      hibernate.show_sql: false
+  minSize: 8
+  maxSize: 10
+  checkConnectionWhileIdle: true
+  maxWaitForConnection: 1s
+  validationQuery: "/* IPP Cubing Health Check */ SELECT 1"
+  logValidationErrors: true
+  checkConnectionOnBorrow: true
+
+server:
+  applicationConnectors:
+    - type: http
+      port: 30000
+  adminConnectors:
+    - type: http
+      port: 30001
+
+  idleThreadTimeout: 2000s
+  requestLog:
+    appenders:
+      - type: file
+        currentLogFilename: /var/log/flipkart/fk-idf-groups-service/requests.log
+        archive: false
+        timeZone: Asia/Calcutta
+      - type: console

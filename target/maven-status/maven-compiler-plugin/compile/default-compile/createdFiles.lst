@@ -1,0 +1,4 @@
+com/app/test/RestApplication.class
+com/app/test/config/RestConfiguration.class
+com/app/test/config/RestConfiguration$EndpointConfig.class
+com/app/test/resources/DefaultResource.class
