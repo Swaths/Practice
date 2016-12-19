@@ -1,3 +1,5 @@
+env: local
+
 endpointConfig:
   hostname: localhost
   port: 30000
@@ -22,9 +24,18 @@ restDatabase:
   maxSize: 10
   checkConnectionWhileIdle: true
   maxWaitForConnection: 1s
-  validationQuery: "/* IPP Cubing Health Check */ SELECT 1"
+  validationQuery: "/* Health Check */ SELECT 1"
   logValidationErrors: true
   checkConnectionOnBorrow: true
+
+hibernate:
+  connection.driver_class: com.mysql.jdbc.Driver
+  hibernate.connection.url: jdbc:mysql://localhost/test_rest
+  hibernate.connection.username: root
+  hibernate.connection.password:
+  hibernate.current_session_context_class: thread
+  hibernate.show_sql: false
+  hibernate.format_sql: false
 
 server:
   applicationConnectors:
@@ -33,7 +44,6 @@ server:
   adminConnectors:
     - type: http
       port: 30001
-
   idleThreadTimeout: 2000s
   requestLog:
     appenders:
@@ -42,3 +52,7 @@ server:
         archive: false
         timeZone: Asia/Calcutta
       - type: console
+
+system:
+  logback-access.debug: true
+  org.jboss.logging.provider: slf4j

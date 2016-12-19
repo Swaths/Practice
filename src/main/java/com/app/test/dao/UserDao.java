@@ -1,7 +1,10 @@
 package com.app.test.dao;
 
+import com.app.test.config.Constants;
 import com.app.test.entity.User;
-import com.sun.jersey.spi.resource.Singleton;
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+import com.google.inject.name.Named;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -11,7 +14,8 @@ import org.hibernate.criterion.Restrictions;
  */
 @Singleton
 public class UserDao extends AbstractDao<User>{
-    public UserDao(SessionFactory sessionFactory){
+    @Inject
+    public UserDao(@Named(Constants.SESSION_FACTORY) SessionFactory sessionFactory){
         super(sessionFactory);
 
     }
